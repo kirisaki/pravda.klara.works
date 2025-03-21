@@ -1,5 +1,22 @@
 ---
 import Layout from "../layouts/Layout.astro";
+const importedPosts = import.meta.glob("./posts/*.md", { eager: true });
+const posts = Object.values(importedPosts)
+    .sort(
+        (m: any, n: any) =>
+            new Date(n.frontmatter.date).getTime() -
+            new Date(m.frontmatter.date).getTime(),
+    )
+    .slice(0, 5);
 ---
 
-<Layout> index dayo </Layout>
+<Layout>
+    <blockquote>
+        モスクワの報道は三つのカテゴリーにわかれている。すなわち「真実」「たぶん真実」及び「真実性のないもの」の三つである。
+        第一のカテゴリーには時報、第二のカテゴリーには天気予報、そして第三のカテゴリーには他の全てが含まれている。
+    </blockquote>
+    <h2>最近の記事</h2>
+    <ul>
+        {posts.map((p: any) => <li>{p.frontmatter.title}</li>)}
+    </ul>
+</Layout>
