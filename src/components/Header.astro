@@ -2,12 +2,34 @@
 
 ---
 
-<header>
-    <h1>プラウダ</h1>
-    <nav>
+<header class="header">
+    <h1 class="logo">プラウダ</h1>
+    <nav class="nav">
         <ul>
             <li><a href="/">index</a></li>
             <li><a href="/about">about</a></li>
         </ul>
     </nav>
 </header>
+<style>
+    .header {
+        border: 1px solid var(--white);
+        border-width: 0 0 1px;
+        display: flex;
+        align-items: end;
+    }
+    .logo {
+        font-size: 2rem;
+        line-height: 3rem;
+        padding-right: 2rem;
+    }
+    .nav ul {
+        list-style: none;
+        display: flex;
+    }
+    .nav li a {
+        display: block;
+        line-height: 3rem;
+        padding: 0 2rem;
+    }
+</style>
