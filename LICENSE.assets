@@ -5,24 +5,24 @@ DIRECTORY STRUCTURE
 
 This repository organizes assets by their license type:
 
-- /assets/copyright/ - Contains all assets with copyright held by Akihito Kirisaki
-- /assets/cc-by/ - Contains all assets released under CC BY 4.0
+- /src/assets/copyright/ - Contains all assets with copyright held by Akihito Kirisaki
+- /src/assets/cc-by/ - Contains all assets released under CC BY 4.0
 
 
-COPYRIGHT ASSETS (/assets/copyright/)
+COPYRIGHT ASSETS (/src/assets/copyright/)
 ===================================
 
-All files in the /assets/copyright/ directory are © Copyright Akihito Kirisaki.
+All files in the /src/assets/copyright/ directory are © Copyright Akihito Kirisaki.
 All rights reserved.
 
 These assets may not be reproduced, distributed, or used in any manner without
 explicit prior written permission from Akihito Kirisaki.
 
 
-CC BY 4.0 ASSETS (/assets/cc-by/)
+CC BY 4.0 ASSETS (/src/assets/cc-by/)
 ===============================
 
-All files in the /assets/cc-by/ directory are licensed under the Creative Commons
+All files in the /src/assets/cc-by/ directory are licensed under the Creative Commons
 Attribution 4.0 International License (CC BY 4.0).
 
 You are free to:
@@ -42,7 +42,7 @@ https://creativecommons.org/licenses/by/4.0/legalcode
 IMAGE ATTRIBUTION
 ===============
 
-When using images from the /assets/cc-by/ directory, please provide attribution
+When using images from the /src/assets/cc-by/ directory, please provide attribution
 as follows:
 
 "[Image Name/Description] by Akihito Kirisaki, licensed under CC BY 4.0"
