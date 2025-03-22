@@ -55,6 +55,10 @@ p {
     text-indent: 1rem;
 }
 
+.img {
+    float: right;
+}
+
 @media screen and (min-width: 480px) {
     a:hover {
         color: var(--dark);

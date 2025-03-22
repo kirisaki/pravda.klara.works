@@ -1,5 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import avatar from "../assets/copyright/kirisaki.png";
 ---
 
 <Layout title="このブログについて">
@@ -24,5 +26,42 @@ import Layout from "../layouts/Layout.astro";
         >にて <a href="https://licenses.opensource.jp/Unlicense/Unlicense.html"
             >The Unlicense</a
         > の下公開されています。
+    </p>
+    <h2>霧咲空人について</h2>
+    <p>
+        <Image
+            src={avatar}
+            alt="霧咲空人のアバター"
+            width="250"
+            height="250"
+            class="img"
+        />
+        <p>アッキーだよ✨</p><p>
+            ハンドルネームは「霧咲空人（きりさきあきひと）」だよ。誰が読めんねんこんなの。
+        </p>
+        <p>
+            座右の銘は「馬鹿も休み休みイエーイ！！」「勢い駆動人生」。大分いきあたりばったりな人生を歩んでいる。
+            趣味は絵を描くこと、プログラミング、女装、ツーリング。所在地は千葉市稲毛区。生まれは蛮族の国山形県長井市。
+        </p>
+        <h3>絵を描くこと</h3>
+        <p>同人誌とか出してた時期もある。あんまりうまくはない。</p>
+        <h3>プログラミング</h3>
+        <p>
+            これでご飯食べてる。好きな言語は Haskell, Erlang, Forth.
+            静的型付け言語が好き、と言いつつ残り 2
+            つは何なんだと言われざるを得ない。 嫌いな言語は Python と PHP.
+            あと意外とローレイヤーが好き。Java
+            は通ったことがないのでそっちの文化が全くわからん。
+        </p>
+        <h3>女装</h3>
+        <p>
+            よくレディースの服を着ている。痩せたらまたロリィタ服を着たいなとは考えている。
+        </p>
+        <h3>ツーリング</h3>
+        <p>
+            いわゆる「距離ガバ」。日帰りで 1000 km
+            とかよくやる。千葉から諏訪湖行ってビワイチとか狂ったことをしている。現在の愛車はカワサキ
+            ZX-4RR
+        </p>
     </p>
 </Layout>
