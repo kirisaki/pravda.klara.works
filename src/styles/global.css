@@ -22,17 +22,20 @@ body {
     line-height: 1.25rem;
 }
 
-@media screen and (max-width: 480px) {
-    body {
-        font-size: 10pt;
-    }
-}
 
 h1 {
     font-weight: 400;
 }
 
+h2 {
+    border: 0 solid var(--pink);
+    border-left-width: 5px;
+    padding: 0.5rem;
+    margin: 1rem 0;
+}
+
 body,
+main,
 h1,
 div,
 p,
@@ -40,10 +43,6 @@ ul {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-h2 {
-    padding: 1rem 0 0.5rem;
 }
 
 a {
@@ -63,7 +62,18 @@ p {
     float: right;
 }
 
-@media screen and (min-width: 480px) {
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 10pt;
+    }
+
+    .img {
+        float: none;
+        display: block;
+        margin: auto;
+        text-align: center;
+    }
+
     a:hover {
         color: var(--dark);
         background-color: var(--white);

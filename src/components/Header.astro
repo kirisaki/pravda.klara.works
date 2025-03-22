@@ -1,16 +1,28 @@
 ---
 import ThemeIcon from "./ThemeIcon.astro";
+const { pathname } = Astro.url;
 ---
 
 <header class="header">
     <h1 class="logo">プラウダ</h1>
-    <nav class="nav">
-        <ul>
-            <li><a href="/">index</a></li>
-            <li><a href="/about">about</a></li>
-        </ul>
-    </nav>
-    <ThemeIcon />
+    <div class="navBox">
+        <nav class="nav">
+            <ul>
+                <li>
+                    <a href="/" class={pathname === "/" ? "active" : ""}
+                        >index</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="/about"
+                        class={pathname === "/about" ? "active" : ""}>about</a
+                    >
+                </li>
+            </ul>
+        </nav>
+        <ThemeIcon />
+    </div>
 </header>
 <style>
     .header {
@@ -20,10 +32,15 @@ import ThemeIcon from "./ThemeIcon.astro";
         align-items: end;
     }
     .logo {
-        flex: 1;
         font-size: 2rem;
         line-height: 3rem;
         padding-right: 2rem;
+    }
+
+    .navBox {
+        display: flex;
+        flex: 1;
+        justify-content: right;
     }
 
     .nav ul {
@@ -34,5 +51,24 @@ import ThemeIcon from "./ThemeIcon.astro";
         display: block;
         line-height: 3rem;
         padding: 0 2rem;
+    }
+    a.active {
+        color: var(--dark);
+        background: var(--white);
+    }
+    a.active:hover {
+        color: var(--dark);
+        background: var(--white);
+    }
+    @media screen and (max-width: 480px) {
+        .header {
+            display: block;
+        }
+        .navBox {
+            justify-content: left;
+        }
+        .nav {
+            flex: 1;
+        }
     }
 </style>
