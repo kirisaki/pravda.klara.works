@@ -4,7 +4,7 @@ const { pathname } = Astro.url;
 ---
 
 <header class="header">
-    <h1 class="logo">プラウダ</h1>
+    <h1 class="logo"><a href="/">プラウダ</a></h1>
     <div class="navBox">
         <nav class="nav">
             <ul>
@@ -32,11 +32,16 @@ const { pathname } = Astro.url;
         align-items: end;
     }
     .logo {
-        font-size: 2rem;
-        line-height: 3rem;
-        padding-right: 2rem;
+        font-family: "Zen Old Mincho", serif;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 2.5rem;
+        line-height: 4rem;
+        letter-spacing: -0.3rem;
     }
-
+    .logo a {
+        text-decoration: none;
+    }
     .navBox {
         display: flex;
         flex: 1;
@@ -49,7 +54,7 @@ const { pathname } = Astro.url;
     }
     .nav li a {
         display: block;
-        line-height: 3rem;
+        line-height: 4rem;
         padding: 0 2rem;
     }
     a.active {
