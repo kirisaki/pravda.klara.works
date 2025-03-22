@@ -1,5 +1,5 @@
 ---
-
+import ThemeIcon from "./ThemeIcon.astro";
 ---
 
 <header class="header">
@@ -10,6 +10,7 @@
             <li><a href="/about">about</a></li>
         </ul>
     </nav>
+    <ThemeIcon />
 </header>
 <style>
     .header {
@@ -19,10 +20,12 @@
         align-items: end;
     }
     .logo {
+        flex: 1;
         font-size: 2rem;
         line-height: 3rem;
         padding-right: 2rem;
     }
+
     .nav ul {
         list-style: none;
         display: flex;

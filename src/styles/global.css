@@ -51,6 +51,10 @@ a {
     transition: var(--ease);
 }
 
+:root[data-theme="light"] main a {
+    color: var(--dark);
+}
+
 p {
     text-indent: 1rem;
 }
@@ -63,5 +67,10 @@ p {
     a:hover {
         color: var(--dark);
         background-color: var(--white);
+    }
+
+    :root[data-theme="light"] main a:hover {
+        color: var(--white);
+        background-color: var(--dark);
     }
 }
