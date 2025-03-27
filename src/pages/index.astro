@@ -1,13 +1,28 @@
 ---
 import Layout from "../layouts/Layout.astro";
-const importedPosts = import.meta.glob("./posts/*.md", { eager: true });
-const posts = Object.values(importedPosts)
+import type { MarkdownInstance } from "astro";
+
+type Frontmatter = {
+    title: string;
+    date: string;
+    tags: string[];
+};
+
+type Post = MarkdownInstance<Frontmatter>;
+
+type ImportedPosts = Record<string, Post>;
+
+const importedPosts: ImportedPosts = import.meta.glob<Post>("./posts/*.md", {
+    eager: true,
+});
+
+const posts: Post[] = Object.values(importedPosts)
     .sort(
-        (m: any, n: any) =>
+        (m: Post, n: Post) =>
             new Date(n.frontmatter.date).getTime() -
             new Date(m.frontmatter.date).getTime(),
     )
-    .slice(0, 5);
+    .slice(0, 6);
 ---
 
 <Layout>
@@ -17,6 +32,12 @@ const posts = Object.values(importedPosts)
     </blockquote>
     <h2>最近の記事</h2>
     <ul>
-        {posts.map((p: any) => <li>{p.frontmatter.title}</li>)}
+        {
+            posts.map((p: Post) => (
+                <li>
+                    <a href={p.url}>{p.frontmatter.title}</a>
+                </li>
+            ))
+        }
     </ul>
 </Layout>

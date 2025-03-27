@@ -27,8 +27,9 @@ pyo pyo pyo.
 
 > 引用付きの文章
 
-```foo.hs
-コードブロック
+```haskell
+main :: IO ()
+main = putStrLn "nyaan"
 ```
 
 ### 小段落
