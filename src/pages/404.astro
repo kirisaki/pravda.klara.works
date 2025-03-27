@@ -29,7 +29,9 @@ import "../styles/global.css";
     <body>
         <div class="container">
             <main class="main">
-                <h1 class="notfound">404 Pravda not found</h1>
+                <h1 class="notfound">
+                    404 <span>Pravda</span> not found
+                </h1>
                 <a href="/">blog index page</a>
             </main>
         </div>
@@ -37,6 +39,12 @@ import "../styles/global.css";
 </html>
 
 <style>
+    .notfound {
+        border: none;
+    }
+    .notfound span {
+        color: var(--pink);
+    }
     .container {
         width: 100vw;
         height: 100vh;

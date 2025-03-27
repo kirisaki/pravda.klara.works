@@ -22,13 +22,14 @@ const posts: Post[] = Object.values(importedPosts)
             new Date(n.frontmatter.date).getTime() -
             new Date(m.frontmatter.date).getTime(),
     )
-    .slice(0, 6);
+    .slice(0, 9);
 ---
 
 <Layout>
     <blockquote>
         モスクワの報道は三つのカテゴリーにわかれている。すなわち「真実」「たぶん真実」及び「真実性のないもの」の三つである。
         第一のカテゴリーには時報、第二のカテゴリーには天気予報、そして第三のカテゴリーには他の全てが含まれている。
+        ――アネクドート
     </blockquote>
     <h2>最近の記事</h2>
     <ul class="recent">
