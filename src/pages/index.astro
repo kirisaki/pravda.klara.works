@@ -21,8 +21,8 @@ const posts: Post[] = Object.values(importedPosts)
         (m: Post, n: Post) =>
             new Date(n.frontmatter.date).getTime() -
             new Date(m.frontmatter.date).getTime(),
-    )
-    .slice(0, 9);
+    );
+    // .slice(0, 9);
 ---
 
 <Layout>
