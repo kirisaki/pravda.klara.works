@@ -70,6 +70,10 @@ p {
     box-sizing: border-box;
 }
 
+p {
+    padding: 0 0 1rem;
+}
+
 a {
     color: var(--white);
     transition: var(--ease);
