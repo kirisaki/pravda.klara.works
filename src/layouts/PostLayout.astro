@@ -4,7 +4,7 @@ const { frontmatter } = Astro.props;
 const tags = frontmatter.tags;
 ---
 
-<Layout title={frontmatter.title}>
+<Layout title={frontmatter.title} description={frontmatter.description}>
     <h1>{frontmatter.title}</h1>
     <div>
         <ul class="meta">
