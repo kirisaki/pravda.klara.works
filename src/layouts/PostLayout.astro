@@ -4,7 +4,11 @@ const { frontmatter } = Astro.props;
 const tags = frontmatter.tags;
 ---
 
-<Layout title={frontmatter.title} description={frontmatter.description}>
+<Layout
+    title={frontmatter.title}
+    description={frontmatter.description}
+    thumbnail={frontmatter.thumbnail}
+>
     <h1>{frontmatter.title}</h1>
     <div>
         <ul class="meta">
@@ -21,7 +25,9 @@ const tags = frontmatter.tags;
             </li>
         </ul>
     </div>
-    <slot />
+    <div class="mdcontent">
+        <slot />
+    </div>
 </Layout>
 <style>
     .meta {
