@@ -4,7 +4,7 @@ import type { MarkdownInstance } from "astro";
 
 type Frontmatter = {
     title: string;
-    date: string;
+    pubDate: string;
     tags: string[];
 };
 
@@ -19,8 +19,8 @@ const importedPosts: ImportedPosts = import.meta.glob<Post>("./posts/*.md", {
 const posts: Post[] = Object.values(importedPosts)
     .sort(
         (m: Post, n: Post) =>
-            new Date(n.frontmatter.date).getTime() -
-            new Date(m.frontmatter.date).getTime(),
+            new Date(n.frontmatter.pubDate).getTime() -
+            new Date(m.frontmatter.pubDate).getTime(),
     );
     // .slice(0, 9);
 ---
@@ -39,7 +39,7 @@ const posts: Post[] = Object.values(importedPosts)
                     <a class="link" href={p.url}>
                         <div class="card-content">
                             <h3 class="title">{p.frontmatter.title}</h3>
-                            <p class="date">{p.frontmatter.date}</p>
+                            <p class="date">{p.frontmatter.pubDate}</p>
                             <p class="summary">{p.rawContent}</p>
                         </div>
                     </a>

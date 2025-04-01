@@ -16,7 +16,8 @@ const { pathname } = Astro.url;
                 <li>
                     <a
                         href="/about"
-                        class={pathname === "/about" ? "active" : ""}>about</a
+                        class={pathname.startsWith("/about") ? "active" : ""}
+                        >about</a
                     >
                 </li>
             </ul>
