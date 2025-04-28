@@ -1,7 +1,7 @@
 ---
 layout: "../../layouts/PostLayout.astro"
 title: "3D プリンタを買ったよ"
-pubDate: "2025-04-12"
+pubDate: "2025-04-28"
 tags: ["日常", "3D プリンタ"]
 author: "Akihito Kirisaki"
 description: "my new gear..."
