@@ -1,6 +1,7 @@
 ---
 import ThemeIcon from "./ThemeIcon.astro";
 const { pathname } = Astro.url;
+const locale = pathname.startsWith("/en/") ? "en" : "ja";
 ---
 
 <header class="header">
@@ -9,15 +10,19 @@ const { pathname } = Astro.url;
         <nav class="nav">
             <ul>
                 <li>
-                    <a href="/" class={pathname === "/" ? "active" : ""}
+                    <a
+                        href={`/${locale}/`}
+                        class={pathname === `/${locale}/` ? "active" : ""}
                         >index</a
                     >
                 </li>
                 <li>
                     <a
-                        href="/about"
-                        class={pathname.startsWith("/about") ? "active" : ""}
-                        >about</a
+                        href={`/${locale}/about`}
+                        "
+                        class={pathname.startsWith(`/${locale}/about`)
+                            ? "active"
+                            : ""}>about</a
                     >
                 </li>
             </ul>

@@ -6,16 +6,20 @@ const { title, description, thumbnail } = Astro.props;
 const styledTitle = (title ? title + " - " : "") + "Pravda - Klara Works";
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImageURL = new URL("/ogp.png", Astro.url);
+const pathname = Astro.url.pathname;
+const locale = pathname.startsWith("/en/") ? "en" : "ja";
+const defaultDescription =
+	locale === "ja" ? "霧咲空人のブログ" : "Blog of Akihito Kirisaki";
 ---
 
 <!doctype html>
-<html lang="ja">
+<html lang={locale}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<meta
 			property="og:description"
-			content={description ? description : "霧咲空人のブログ"}
+			content={description ? description : defaultDescription}
 		/>
 		<meta property="og:title" content={styledTitle} />
 		<meta
