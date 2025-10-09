@@ -1,0 +1,76 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import avatar from "../assets/copyright/kirisaki.png";
+---
+
+<Layout title="このブログについて">
+    <h1>このブログについて</h1>
+    <p>
+        この Web
+        サイトは霧咲空人（きりさきあきひと）が運営するブログサイトです。適当になんか書いていきます。
+    </p>
+    <h2>ライセンスについて</h2>
+    <p>
+        当ブログの記事の内容はすべて <a
+            href="https://creativecommons.org/publicdomain/zero/1.0/deed.ja"
+            >CC0 1.0</a
+        >で公開されています。
+        ただし、画像や引用などについて註釈がついている部分に関してはその限りではございませんのでご注意ください。
+        基本的に画像は霧咲空人が著作権を有しますがロゴやアバターなど一部の画像を除き
+        <a href="https://creativecommons.org/licenses/by/4.0/deed.ja"
+            >CC BY 4.0</a
+        > で利用することが可能です。 Web サイトのソースコードは <a
+            href="https://github.com/kirisaki/pravda.klara.works"
+            >GitHub のリポジトリ</a
+        >にて <a href="https://licenses.opensource.jp/Unlicense/Unlicense.html"
+            >The Unlicense</a
+        > の下公開されています。
+    </p>
+    <h2>霧咲空人について</h2>
+    <p>
+        <figure class="img">
+            <Image
+                src={avatar}
+                alt="霧咲空人のアバター"
+                width="250"
+                height="250"
+            />
+            <figcaption>©Akihito Kirisaki</figcaption>
+        </figure>
+        <p>アッキーだよ✨</p><p>
+            ハンドルネームは「霧咲空人（きりさきあきひと）」だよ。誰が読めんねんこんなの。
+        </p>
+        <p>
+            座右の銘は「馬鹿も休み休みイエーイ！！」「勢い駆動人生」。大分いきあたりばったりな人生を歩んでいる。
+            趣味は絵を描くこと、プログラミング、女装、ツーリング。所在地は千葉市稲毛区。生まれは蛮族の国山形県長井市。
+        </p>
+        <h3>絵を描くこと</h3>
+        <p>同人誌とか出してた時期もある。あんまりうまくはない。</p>
+        <h3>プログラミング</h3>
+        <p>
+            これでご飯食べてる。好きな言語は Haskell, Erlang, Forth.
+            静的型付け言語が好き、と言いつつ残り 2
+            つは何なんだと言われざるを得ない。 嫌いな言語は Python と PHP.
+            あと意外とローレイヤーが好き。C も書けるよ。 Java
+            は通ったことがないのでそっちの文化が全くわからん。
+        </p>
+        <h3>女装</h3>
+        <p>
+            よくレディースの服を着ている。痩せたらまたロリィタ服を着たいなとは考えている。
+        </p>
+        <h3>ツーリング</h3>
+        <p>
+            いわゆる「距離ガバ」。日帰りで 1000 km
+            とかよくやる。千葉から諏訪湖行ってビワイチとか狂ったことをしている。現在の愛車はカワサキ
+            ZX-4RR. こいつ 400 cc のくせにめちゃくちゃ回るし速いのでこわい。
+        </p>
+        <h3>その他の居場所</h3>
+        <p>
+            <a href="https://klara.works/">Klara Works のウェブサイト</a>や <a
+                href="https://scrapbox.io/kirisaki/%E4%B8%BB%E3%81%AA%E3%83%9A%E3%83%BC%E3%82%B8"
+                >Consense のこのページ</a
+            >見てね。
+        </p>
+    </p>
+</Layout>
