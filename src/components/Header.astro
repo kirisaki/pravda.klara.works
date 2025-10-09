@@ -2,10 +2,11 @@
 import ThemeIcon from "./ThemeIcon.astro";
 const { pathname } = Astro.url;
 const locale = pathname.startsWith("/en/") ? "en" : "ja";
+const title = locale === "ja" ? "プラウダ" : "Pravda";
 ---
 
 <header class="header">
-    <h1 class="logo"><a href="/">プラウダ</a></h1>
+    <h1 class="logo"><a href={`/${locale}/`}>{title}</a></h1>
     <div class="navBox">
         <nav class="nav">
             <ul>

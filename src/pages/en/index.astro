@@ -1,15 +1,15 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
-const posts = (await getCollection('posts', p => p.data.lang === 'ja' && !p.data.draft))
-  .sort((a,b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+const posts = (await getCollection('posts_en', p => p.data.lang === 'en' && !p.data.draft))
+  .sort((a,b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
 <Layout>
     <blockquote>
-        モスクワの報道は三つのカテゴリーにわかれている。すなわち「真実」「たぶん真実」及び「真実性のないもの」の三つである。
-        第一のカテゴリーには時報、第二のカテゴリーには天気予報、そして第三のカテゴリーには他の全てが含まれている。
-        ――アネクドート
+        Moscow’s news reports fall into three categories: “true,” “probably true,” and “untrue.”
+        The first category includes the time signals, the second the weather forecasts, and the third everything else.
+        — <i>Anekdot</i>
     </blockquote>
     <h2>最近の記事</h2>
     <ul class="recent">
@@ -19,7 +19,7 @@ const posts = (await getCollection('posts', p => p.data.lang === 'ja' && !p.data
                     <a class="link" href={`/${p.slug}`}>
                         <div class="card-content">
                             <h3 class="title">{p.data.title}</h3>
-                            <p class="date">{p.data.pubDate.toISOString().slice(0, 10)}</p>
+                            <p class="date">{p.data.date.toISOString().slice(0, 10)}</p>
                             <p class="summary">{p.body}</p>
                         </div>
                     </a>

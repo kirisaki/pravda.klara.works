@@ -1,76 +1,90 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { Image } from "astro:assets";
-import avatar from "../assets/copyright/kirisaki.png";
+import avatar from "../../assets/copyright/kirisaki.png";
 ---
 
-<Layout title="このブログについて">
-    <h1>このブログについて</h1>
+<Layout title="About This Blog">
+    <h1>About This Blog</h1>
     <p>
-        この Web
-        サイトは霧咲空人（きりさきあきひと）が運営するブログサイトです。適当になんか書いていきます。
+        This website is a personal blog operated by Akihito Kirisaki. I’ll be
+        writing whatever comes to mind, more or less at random.
     </p>
-    <h2>ライセンスについて</h2>
+    <h2>About Licensing</h2>
     <p>
-        当ブログの記事の内容はすべて <a
-            href="https://creativecommons.org/publicdomain/zero/1.0/deed.ja"
+        All articles on this blog are released under
+        <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en"
             >CC0 1.0</a
-        >で公開されています。
-        ただし、画像や引用などについて註釈がついている部分に関してはその限りではございませんのでご注意ください。
-        基本的に画像は霧咲空人が著作権を有しますがロゴやアバターなど一部の画像を除き
-        <a href="https://creativecommons.org/licenses/by/4.0/deed.ja"
+        >. However, please note that this does not apply to images or quoted
+        materials that include specific annotations. Most images are copyrighted
+        by Akihito Kirisaki, but—except for certain works such as logos or
+        avatars—they may be used under
+        <a href="https://creativecommons.org/licenses/by/4.0/deed.en"
             >CC BY 4.0</a
-        > で利用することが可能です。 Web サイトのソースコードは <a
-            href="https://github.com/kirisaki/pravda.klara.works"
-            >GitHub のリポジトリ</a
-        >にて <a href="https://licenses.opensource.jp/Unlicense/Unlicense.html"
+        >. The website’s source code is available on
+        <a href="https://github.com/kirisaki/pravda.klara.works">GitHub</a>
+        under <a href="https://licenses.opensource.jp/Unlicense/Unlicense.html"
             >The Unlicense</a
-        > の下公開されています。
+        >.
     </p>
-    <h2>霧咲空人について</h2>
+    <h2>About Akihito Kirisaki</h2>
     <p>
         <figure class="img">
             <Image
                 src={avatar}
-                alt="霧咲空人のアバター"
+                alt="Avatar of Akihito Kirisaki"
                 width="250"
                 height="250"
             />
-            <figcaption>©Akihito Kirisaki</figcaption>
+            <figcaption>© Akihito Kirisaki</figcaption>
         </figure>
-        <p>アッキーだよ✨</p><p>
-            ハンドルネームは「霧咲空人（きりさきあきひと）」だよ。誰が読めんねんこんなの。
-        </p>
+        <p>Hi, I’m Akkie ✨</p>
+        <p>My handle name is “Akihito Kirisaki.”</p>
         <p>
-            座右の銘は「馬鹿も休み休みイエーイ！！」「勢い駆動人生」。大分いきあたりばったりな人生を歩んでいる。
-            趣味は絵を描くこと、プログラミング、女装、ツーリング。所在地は千葉市稲毛区。生まれは蛮族の国山形県長井市。
+            My mottos are “Take breaks, idiot, Yay!!”(Note: This is a silly
+            Japanese wordplay.) and “Impulse-Driven Life.” I tend to live life
+            on pure momentum. My hobbies are drawing, programming,
+            cross-dressing, and touring on my motorcycle. I live in Inage Ward,
+            Chiba City, and was born in Nagai City, Yamagata Prefecture—a land
+            of noble barbarians.
         </p>
-        <h3>絵を描くこと</h3>
-        <p>同人誌とか出してた時期もある。あんまりうまくはない。</p>
-        <h3>プログラミング</h3>
+        <h3>Drawing</h3>
         <p>
-            これでご飯食べてる。好きな言語は Haskell, Erlang, Forth.
-            静的型付け言語が好き、と言いつつ残り 2
-            つは何なんだと言われざるを得ない。 嫌いな言語は Python と PHP.
-            あと意外とローレイヤーが好き。C も書けるよ。 Java
-            は通ったことがないのでそっちの文化が全くわからん。
+            There was a time when I made and sold doujinshi. I’m not that good,
+            though.
         </p>
-        <h3>女装</h3>
+        <h3>Programming</h3>
         <p>
-            よくレディースの服を着ている。痩せたらまたロリィタ服を着たいなとは考えている。
+            This is what I do for a living. My favorite languages are Haskell,
+            Erlang, and Forth. I say I like statically typed languages, but two
+            of those clearly aren’t— I’ll admit that contradiction. I dislike
+            Python and PHP. I also like low-level programming; I can write C as
+            well. I’ve never really touched Java, so that culture is a total
+            mystery to me.
         </p>
-        <h3>ツーリング</h3>
+        <h3>Cross-dressing</h3>
         <p>
-            いわゆる「距離ガバ」。日帰りで 1000 km
-            とかよくやる。千葉から諏訪湖行ってビワイチとか狂ったことをしている。現在の愛車はカワサキ
-            ZX-4RR. こいつ 400 cc のくせにめちゃくちゃ回るし速いのでこわい。
+            I often wear women’s clothing. If I lose some weight, I’d like to
+            wear Lolita fashion again.
         </p>
-        <h3>その他の居場所</h3>
+        <h3>Motorcycle Touring</h3>
         <p>
-            <a href="https://klara.works/">Klara Works のウェブサイト</a>や <a
+            I’m what they call a “distance gobbler.” It’s not unusual for me to
+            do 1000 km day trips. I’ve done ridiculous rides like going from
+            Chiba to Lake Suwa and around Lake Biwa in one go. My current bike
+            is a Kawasaki ZX-4RR. It’s only 400 cc, but it revs insanely high
+            and is scarily fast.
+        </p>
+        <h3>Other Places You Can Find Me</h3>
+        <p>
+            Check out
+            <a href="https://klara.works/">the Klara Works website</a>
+            and
+            <a
                 href="https://scrapbox.io/kirisaki/%E4%B8%BB%E3%81%AA%E3%83%9A%E3%83%BC%E3%82%B8"
-                >Consense のこのページ</a
-            >見てね。
+            >
+                this Cosense page
+            </a>.
         </p>
     </p>
 </Layout>
