@@ -1,8 +1,7 @@
 ---
 import Layout from "./Layout.astro";
 
-// 受け口：entry と lang（既定: 'ja'）
-const { entry, lang = "ja" } = Astro.props;
+const { entry } = Astro.props;
 
 const fm = entry?.data ?? {};
 const title = fm.title ?? "";
@@ -10,6 +9,7 @@ const description = fm.description ?? "";
 const thumbnail = fm.thumbnail ?? "";
 const author = fm.author ?? "";
 const tags: string[] = Array.isArray(fm.tags) ? fm.tags : [];
+const lang = fm.lang ?? "ja";
 
 const rawDate = fm.date ?? fm.pubDate ?? null;
 const asDate = (d: any) =>
