@@ -1,0 +1,90 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import avatar from "../../assets/copyright/kirisaki.png";
+---
+
+<Layout title="About This Blog">
+    <h1>About This Blog</h1>
+    <p>
+        This website is a personal blog operated by Akihito Kirisaki. I’ll be
+        writing whatever comes to mind, more or less at random.
+    </p>
+    <h2>About Licensing</h2>
+    <p>
+        All articles on this blog are released under
+        <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en"
+            >CC0 1.0</a
+        >. However, please note that this does not apply to images or quoted
+        materials that include specific annotations. Most images are copyrighted
+        by Akihito Kirisaki, but—except for certain works such as logos or
+        avatars—they may be used under
+        <a href="https://creativecommons.org/licenses/by/4.0/deed.en"
+            >CC BY 4.0</a
+        >. The website’s source code is available on
+        <a href="https://github.com/kirisaki/pravda.klara.works">GitHub</a>
+        under <a href="https://licenses.opensource.jp/Unlicense/Unlicense.html"
+            >The Unlicense</a
+        >.
+    </p>
+    <h2>About Akihito Kirisaki</h2>
+    <p>
+        <figure class="img">
+            <Image
+                src={avatar}
+                alt="Avatar of Akihito Kirisaki"
+                width="250"
+                height="250"
+            />
+            <figcaption>© Akihito Kirisaki</figcaption>
+        </figure>
+        <p>Hi, I’m Akkie ✨</p>
+        <p>My handle name is “Akihito Kirisaki.”</p>
+        <p>
+            My mottos are “Take breaks, idiot, Yay!!”(Note: This is a silly
+            Japanese wordplay.) and “Impulse-Driven Life.” I tend to live life
+            on pure momentum. My hobbies are drawing, programming,
+            cross-dressing, and touring on my motorcycle. I live in Inage Ward,
+            Chiba City, and was born in Nagai City, Yamagata Prefecture—a land
+            of noble barbarians.
+        </p>
+        <h3>Drawing</h3>
+        <p>
+            There was a time when I made and sold doujinshi. I’m not that good,
+            though.
+        </p>
+        <h3>Programming</h3>
+        <p>
+            This is what I do for a living. My favorite languages are Haskell,
+            Erlang, and Forth. I say I like statically typed languages, but two
+            of those clearly aren’t— I’ll admit that contradiction. I dislike
+            Python and PHP. I also like low-level programming; I can write C as
+            well. I’ve never really touched Java, so that culture is a total
+            mystery to me.
+        </p>
+        <h3>Cross-dressing</h3>
+        <p>
+            I often wear women’s clothing. If I lose some weight, I’d like to
+            wear Lolita fashion again.
+        </p>
+        <h3>Motorcycle Touring</h3>
+        <p>
+            I’m what they call a “distance gobbler.” It’s not unusual for me to
+            do 1000 km day trips. I’ve done ridiculous rides like going from
+            Chiba to Lake Suwa and around Lake Biwa in one go. My current bike
+            is a Kawasaki ZX-4RR. It’s only 400 cc, but it revs insanely high
+            and is scarily fast.
+        </p>
+        <h3>Other Places You Can Find Me</h3>
+        <p>
+            Check out
+            <a href="https://klara.works/">the Klara Works website</a>
+            and
+            <a
+                href="https://scrapbox.io/kirisaki/%E4%B8%BB%E3%81%AA%E3%83%9A%E3%83%BC%E3%82%B8"
+            >
+                this Cosense page
+            </a>.
+        </p>
+    </p>
+</Layout>

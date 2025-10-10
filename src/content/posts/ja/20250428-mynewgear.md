@@ -1,10 +1,10 @@
 ---
-layout: "../../layouts/PostLayout.astro"
 title: "3D プリンタを買ったよ"
-pubDate: "2025-04-28"
+date: "2025-04-28"
 tags: ["日常", "3D プリンタ"]
 author: "Akihito Kirisaki"
 description: "my new gear..."
+lang: ja
 ---
 <img src="https://res.cloudinary.com/pravda/image/upload/v1745840876/20250428-mynewgear-01.jpg" alt="設置された Bambu lab P1S" width=500 />
 

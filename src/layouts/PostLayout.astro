@@ -1,48 +1,68 @@
 ---
 import Layout from "./Layout.astro";
-const { frontmatter } = Astro.props;
-const tags = frontmatter.tags;
+
+// 受け口：entry と lang（既定: 'ja'）
+const { entry, lang = "ja" } = Astro.props;
+
+const fm = entry?.data ?? {};
+const title = fm.title ?? "";
+const description = fm.description ?? "";
+const thumbnail = fm.thumbnail ?? "";
+const author = fm.author ?? "";
+const tags: string[] = Array.isArray(fm.tags) ? fm.tags : [];
+
+const rawDate = fm.date ?? fm.pubDate ?? null;
+const asDate = (d: any) =>
+    d instanceof Date ? d : d ? new Date(String(d)) : null;
+const date: Date | null = asDate(rawDate);
+
+// 表示用 YYYY-MM-DD（JSTで出したいときは下の toLocale を使う）
+const formatDate = (d: Date) => d.toISOString().slice(0, 10);
+
+const tagHref = (t: string) => `/${lang}/tags/${encodeURIComponent(t)}`;
 ---
 
-<Layout
-    title={frontmatter.title}
-    description={frontmatter.description}
-    thumbnail={frontmatter.thumbnail}
->
-    <h1>{frontmatter.title}</h1>
+<Layout title={title} description={description} thumbnail={thumbnail}>
+    <h1>{title}</h1>
     <div>
         <ul class="meta">
-            <li>date: {frontmatter.pubDate.toString().slice(0, 10)}</li>
-            <li>author: {frontmatter.author}</li>
-            <li class="tags">
-                {
-                    tags.map((tag: string) => (
-                        <p class="tag">
-                            <a href={`/tags/${tag}`}>{tag}</a>
-                        </p>
-                    ))
-                }
-            </li>
+            {date && <li>date: {formatDate(date)}</li>}
+            {author && <li>author: {author}</li>}
+            {
+                tags.length > 0 && (
+                    <li class="tags">
+                        {tags.map((tag) => (
+                            <p class="tag">
+                                <a href={tagHref(tag)}>{tag}</a>
+                            </p>
+                        ))}
+                    </li>
+                )
+            }
         </ul>
     </div>
     <div class="mdcontent">
         <slot />
     </div>
 </Layout>
+
 <style>
     .meta {
         margin: 0;
         padding: 0 0 1rem;
         display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
     }
     .meta li {
         list-style: none;
-        padding: 0 0.5rem 0 0;
+        padding: 0;
     }
     .tags {
         flex: 1;
         display: flex;
         justify-content: right;
+        gap: 0.5rem;
     }
     .tag {
         padding: 0;
