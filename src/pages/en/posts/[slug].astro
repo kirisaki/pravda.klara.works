@@ -1,0 +1,17 @@
+---
+import { getCollection, render } from "astro:content";
+import PostLayout from "../../../layouts/PostLayout.astro";
+
+export const prerender = true;
+export async function getStaticPaths() {
+  const list = await getCollection("posts_en");
+  return list.map((p) => ({ params: { slug: p.id } }));
+}
+const { slug } = Astro.params;
+const entry = (await getCollection("posts_en", (p) => p.id === slug))[0];
+const { Content } = await render(entry);
+---
+
+<PostLayout entry={entry} lang="ja">
+  <Content />
+</PostLayout>

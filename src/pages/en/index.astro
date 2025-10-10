@@ -11,12 +11,12 @@ const posts = (await getCollection('posts_en', p => p.data.lang === 'en' && !p.d
         The first category includes the time signals, the second the weather forecasts, and the third everything else.
         — <i>Anekdot</i>
     </blockquote>
-    <h2>最近の記事</h2>
+    <h2>Recent articles</h2>
     <ul class="recent">
         {
             posts.map((p) => (
                 <li class="card">
-                    <a class="link" href={`/${p.slug}`}>
+                    <a class="link" href={`/en/posts/${p.id}`}>
                         <div class="card-content">
                             <h3 class="title">{p.data.title}</h3>
                             <p class="date">{p.data.date.toISOString().slice(0, 10)}</p>

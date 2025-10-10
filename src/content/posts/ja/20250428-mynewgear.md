@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/PostLayout.astro"
 title: "3D プリンタを買ったよ"
 date: "2025-04-28"
 tags: ["日常", "3D プリンタ"]

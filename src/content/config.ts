@@ -5,7 +5,6 @@ export const collections = {
   posts_ja: defineCollection({
     loader: glob({ pattern: '**/*.md', base: 'src/content/posts/ja' }),
     schema: z.object({
-      layout: z.string().default('post'),
       title: z.string(),
       date: z.coerce.date(),
       lang: z.enum(['ja', 'en']),
@@ -17,7 +16,6 @@ export const collections = {
   posts_en: defineCollection({
     loader: glob({ pattern: '**/*.md', base: 'src/content/posts/en' }),
     schema: z.object({
-      layout: z.string().default('post'),
       title: z.string(),
       date: z.coerce.date(),
       lang: z.enum(['ja', 'en']),
