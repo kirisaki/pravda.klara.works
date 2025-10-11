@@ -31,7 +31,7 @@ Writing a “weekend ray tracer” in Forth is borderline insanity.
 - There are no variables  
   - Well, kind of, but they’re very peculiar  
   - In gforth, there are literally none for floating-point numbers  
-- No namespaces  
+- ~~No namespaces~~ There are wordlists after all (added on 2025-10-11)
 - No types  
 - You push values onto a stack, call a word (Forth’s term for a function), and push the result back onto the stack  
   - Naturally, stack underflows and overflows happen all the time
