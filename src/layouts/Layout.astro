@@ -6,7 +6,7 @@ const { title, description, thumbnail } = Astro.props;
 const styledTitle = (title ? title + " - " : "") + "Pravda - Klara Works";
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImageURL = new URL("/ogp.png", Astro.url);
-const ogImageURL = thumbnail
+const ogImageURL = thumbnail && thumbnail.length > 0
 	? (thumbnail.startsWith('http') ? thumbnail : new URL(thumbnail, Astro.url))
 	: socialImageURL;
 const pathname = Astro.url.pathname;

@@ -11,6 +11,7 @@ export const collections = {
       tags: z.array(z.string()).default([]),
       author: z.string().optional(),
       description: z.string().optional(),
+      thumbnail: z.string().optional(),
     }),
   }),
   posts_en: defineCollection({
@@ -22,6 +23,7 @@ export const collections = {
       tags: z.array(z.string()).default([]),
       author: z.string().optional(),
       description: z.string().optional(),
+      thumbnail: z.string().optional(),
     }),
   }),
 };
