@@ -84,6 +84,8 @@ const deployBlock = "38990704";
 
   // --- Load comments ---
 
+  let cachedComments: Comment[] = [];
+
   async function loadComments(): Promise<Comment[]> {
     const logs = await publicClient.getContractEvents({
       address: contractAddress,
@@ -135,7 +137,7 @@ const deployBlock = "38990704";
       .replace(/"/g, "&quot;");
   }
 
-  loadComments().then(renderComments).catch((e) => {
+  loadComments().then((comments) => { cachedComments = comments; renderComments(comments); }).catch((e) => {
     console.error("Failed to load comments:", e);
     document.getElementById("comment-list")!.innerHTML =
       "<p class='error'>Failed to load comments.</p>";
@@ -176,6 +178,13 @@ const deployBlock = "38990704";
   });
 
   // --- Submit comment ---
+
+  contentInput.addEventListener("keydown", (e) => {
+    if (e.ctrlKey && e.key === "Enter") {
+      e.preventDefault();
+      submitBtn.click();
+    }
+  });
 
   submitBtn.addEventListener("click", async () => {
     const ethereum = (window as any).ethereum;
@@ -219,15 +228,13 @@ const deployBlock = "38990704";
 
       const data = await res.json();
       if (res.ok) {
-        formStatus.textContent = "Comment posted! Waiting for confirmation…";
         contentInput.value = "";
         localStorage.setItem("golos:username", username);
-        // Reload comments after a short delay for tx confirmation
-        setTimeout(async () => {
-          const comments = await loadComments();
-          renderComments(comments);
-          formStatus.textContent = "";
-        }, 5000);
+        // Immediately show the new comment optimistically
+        const now = Math.floor(Date.now() / 1000);
+        cachedComments.push({ author: connectedAddress!, username, ensName: "", content, timestamp: now });
+        renderComments(cachedComments);
+        formStatus.textContent = "Comment posted!";
       } else {
         formStatus.textContent = `Error: ${data.error}`;
       }
