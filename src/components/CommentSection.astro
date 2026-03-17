@@ -111,11 +111,14 @@ const deployBlock = "38990704";
     list.innerHTML = comments
       .map((c) => {
         const date = new Date(c.timestamp * 1000).toISOString().slice(0, 16).replace("T", " ");
-        const displayName = c.username;
-        const tooltip = c.ensName ? `${c.ensName} (${c.author})` : c.author;
+        const shortAddr = c.author.slice(0, 6) + "…" + c.author.slice(-4);
+        const ensLine = c.ensName ? `<span class="author-ens">${escapeHtml(c.ensName)}</span> ` : "";
         return `<div class="comment">
           <div class="comment-header">
-            <span class="comment-author" title="${tooltip}">${displayName}</span>
+            <div class="comment-author-block">
+              <span class="comment-author">${escapeHtml(c.username)}</span>
+              <span class="author-meta">${ensLine}<span class="author-addr">${shortAddr}</span></span>
+            </div>
             <span class="comment-date">${date}</span>
           </div>
           <div class="comment-body">${escapeHtml(c.content)}</div>
@@ -149,6 +152,10 @@ const deployBlock = "38990704";
   const formStatus = document.getElementById("form-status")!;
 
   let connectedAddress: Hex | null = null;
+
+  // Restore saved username
+  const savedUsername = localStorage.getItem("golos:username");
+  if (savedUsername) usernameInput.value = savedUsername;
 
   connectBtn.addEventListener("click", async () => {
     const ethereum = (window as any).ethereum;
@@ -214,6 +221,7 @@ const deployBlock = "38990704";
       if (res.ok) {
         formStatus.textContent = "Comment posted! Waiting for confirmation…";
         contentInput.value = "";
+        localStorage.setItem("golos:username", username);
         // Reload comments after a short delay for tx confirmation
         setTimeout(async () => {
           const comments = await loadComments();
@@ -258,9 +266,24 @@ const deployBlock = "38990704";
     align-items: baseline;
     margin-bottom: 0.3rem;
   }
+  .comment-author-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
   .comment-author {
     font-weight: 700;
-    cursor: help;
+  }
+  .author-meta {
+    font-size: 0.75rem;
+    color: var(--gray);
+  }
+  .author-ens {
+    color: var(--gray);
+  }
+  .author-addr {
+    font-family: monospace;
+    color: var(--gray);
   }
   .comment-date {
     color: var(--gray);
