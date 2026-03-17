@@ -1,5 +1,6 @@
 ---
 import Layout from "./Layout.astro";
+import CommentSection from "../components/CommentSection.astro";
 
 const { entry } = Astro.props;
 
@@ -44,6 +45,7 @@ const tagHref = (t: string) => `/${lang}/tags/${encodeURIComponent(t)}`;
     <div class="mdcontent">
         <slot />
     </div>
+    <CommentSection postSlug={entry.id} />
 </Layout>
 
 <style>
