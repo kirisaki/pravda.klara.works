@@ -72,6 +72,7 @@ export default function CommentForm({ postSlug, onCommentPosted }: Props) {
       localStorage.setItem("golos:username", u);
       setContent("");
       onCommentPosted({
+        commentId: -1,
         author: socialSession?.wallet ?? walletAddress!,
         username: u,
         ensName: "",
