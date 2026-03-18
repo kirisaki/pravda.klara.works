@@ -29,58 +29,50 @@ export default function CommentForm({ postSlug, onCommentPosted }: Props) {
     if (session) setSocialSession(session);
   }, []);
 
-  const isLoggedIn = !!socialSession;
-  const isWalletConnected = !!walletAddress;
+  const isAuthenticated = !!socialSession || !!walletAddress;
 
-  async function handleSubmitWallet() {
-    const u = username.trim();
-    const c = content.trim();
-    if (!u) { setStatus("Username is required"); return; }
-    if (!c) { setStatus("Comment is required"); return; }
-
-    setSubmitting(true);
+  async function handleConnect() {
     try {
-      let addr = walletAddress;
-      if (!addr) {
-        setStatus("Connecting wallet…");
-        addr = await connectWallet();
-        setWalletAddress(addr);
-      }
-
-      setStatus("Signing…");
-      await submitComment(postSlug, addr, u, c);
-      localStorage.setItem("golos:username", u);
-      setContent("");
-      onCommentPosted({
-        author: addr,
-        username: u,
-        ensName: "",
-        content: c,
-        timestamp: Math.floor(Date.now() / 1000),
-      });
-      setStatus("Comment posted!");
+      const addr = await connectWallet();
+      setWalletAddress(addr);
     } catch (e: any) {
-      setStatus(`Error: ${e.message ?? "Unknown error"}`);
-    } finally {
-      setSubmitting(false);
+      setStatus(`Error: ${e.message}`);
     }
   }
 
-  async function handleSubmitSocial() {
-    if (!socialSession) return;
+  function handleGoogleLogin() {
+    localStorage.setItem("golos:returnTo", window.location.href);
+    window.location.href = getGoogleAuthUrl();
+  }
+
+  function handleLogout() {
+    clearSocialSession();
+    setSocialSession(null);
+    setWalletAddress(null);
+    setStatus("");
+  }
+
+  async function handleSubmit() {
     const u = username.trim();
     const c = content.trim();
     if (!u) { setStatus("Username is required"); return; }
     if (!c) { setStatus("Comment is required"); return; }
 
     setSubmitting(true);
-    setStatus("Submitting…");
+
     try {
-      await submitSocialComment(postSlug, u, c, socialSession.token);
+      if (socialSession) {
+        setStatus("Submitting…");
+        await submitSocialComment(postSlug, u, c, socialSession.token);
+      } else if (walletAddress) {
+        setStatus("Signing…");
+        await submitComment(postSlug, walletAddress, u, c);
+      }
+
       localStorage.setItem("golos:username", u);
       setContent("");
       onCommentPosted({
-        author: socialSession.wallet,
+        author: socialSession?.wallet ?? walletAddress!,
         username: u,
         ensName: "",
         content: c,
@@ -100,30 +92,11 @@ export default function CommentForm({ postSlug, onCommentPosted }: Props) {
     }
   }
 
-  function handleSubmit() {
-    if (isLoggedIn) {
-      handleSubmitSocial();
-    } else {
-      handleSubmitWallet();
-    }
-  }
-
   function handleKeyDown(e: KeyboardEvent) {
     if (e.ctrlKey && e.key === "Enter") {
       e.preventDefault();
       handleSubmit();
     }
-  }
-
-  function handleGoogleLogin() {
-    localStorage.setItem("golos:returnTo", window.location.href);
-    window.location.href = getGoogleAuthUrl();
-  }
-
-  function handleLogout() {
-    clearSocialSession();
-    setSocialSession(null);
-    setStatus("");
   }
 
   const shortAddr = walletAddress
@@ -140,13 +113,12 @@ export default function CommentForm({ postSlug, onCommentPosted }: Props) {
           value={username}
           onInput={(e) => setUsername((e.target as HTMLInputElement).value)}
         />
-        {isLoggedIn ? (
-          <>
-            <span class="social-info">Logged in as {socialSession!.displayName}</span>
-            <button class="btn-link" onClick={handleLogout}>Logout</button>
-          </>
-        ) : (
-          shortAddr && <span class="wallet-address">{shortAddr}</span>
+        {socialSession && (
+          <span class="social-info">Logged in as {socialSession.displayName}</span>
+        )}
+        {shortAddr && <span class="wallet-address">{shortAddr}</span>}
+        {isAuthenticated && (
+          <button class="btn-link" onClick={handleLogout}>Logout</button>
         )}
       </div>
       <textarea
@@ -157,17 +129,23 @@ export default function CommentForm({ postSlug, onCommentPosted }: Props) {
         onInput={(e) => setContent((e.target as HTMLTextAreaElement).value)}
         onKeyDown={handleKeyDown}
       />
-      <div class="form-row">
-        <button onClick={handleSubmit} disabled={submitting}>
-          {isLoggedIn ? "Post Comment" : "Post with Wallet"}
-        </button>
-        {!isLoggedIn && !isWalletConnected && (
-          <button class="btn-secondary" onClick={handleGoogleLogin}>
-            Sign in with Google
-          </button>
+      <div class="form-actions">
+        {!isAuthenticated && (
+          <div class="auth-buttons">
+            <button class="btn-secondary" onClick={handleConnect}>Connect Wallet</button>
+            <span class="auth-or">or</span>
+            <button class="btn-secondary" onClick={handleGoogleLogin}>Sign in with Google</button>
+          </div>
         )}
-        {status && <span class="form-status">{status}</span>}
+        <button
+          class="btn-submit"
+          onClick={handleSubmit}
+          disabled={submitting || !isAuthenticated}
+        >
+          Post Comment
+        </button>
       </div>
+      {status && <span class="form-status">{status}</span>}
     </div>
   );
 }

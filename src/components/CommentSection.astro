@@ -119,7 +119,6 @@ const { postSlug } = Astro.props;
     font-family: inherit;
     font-size: inherit;
     transition: var(--ease);
-    align-self: flex-start;
   }
   .comments button:hover {
     background: var(--peach);
@@ -129,10 +128,29 @@ const { postSlug } = Astro.props;
     opacity: 0.5;
     cursor: not-allowed;
   }
+  .form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+  }
+  .auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .auth-or {
+    color: var(--white);
+    font-size: 0.85rem;
+  }
+  .btn-submit {
+    margin-left: auto;
+  }
   .form-status {
     color: var(--white);
     font-size: 0.85rem;
     text-indent: 0;
+    margin-top: 0.3rem;
   }
   .social-info {
     color: var(--gray);
@@ -150,10 +168,14 @@ const { postSlug } = Astro.props;
     color: var(--white);
   }
   .btn-secondary {
-    background: var(--gray);
+    background: transparent;
+    border: 1px solid var(--gray);
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
   }
   .btn-secondary:hover {
-    background: var(--white);
-    color: var(--dark);
+    border-color: var(--white);
+    background: transparent;
+    color: var(--white);
   }
 </style>
