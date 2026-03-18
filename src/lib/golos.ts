@@ -1,13 +1,13 @@
 import { createPublicClient, http, keccak256, toHex, encodePacked, type Hex } from "viem";
-import { baseSepolia } from "viem/chains";
+import { base } from "viem/chains";
 
-const CONTRACT_ADDRESS = "0x694790a0A09b60103C616003B8404b141557F4DA" as Hex;
-const RPC_URL = "https://sepolia.base.org";
+const CONTRACT_ADDRESS = "0xA2e7c4BBD710BEE6B84D2E69e3497a0DAF205a7A" as Hex;
+const RPC_URL = "https://mainnet.base.org";
 const RELAYER_URL =
   typeof window !== "undefined" && window.location.hostname === "localhost"
     ? "http://localhost:8787"
     : "https://relayer.kristina3731.workers.dev";
-const DEPLOY_BLOCK = 38990704n;
+const DEPLOY_BLOCK = 43522678n;
 const CHUNK_SIZE = 5000n;
 
 const golosAbi = [
@@ -27,7 +27,7 @@ const golosAbi = [
 ] as const;
 
 const publicClient = createPublicClient({
-  chain: baseSepolia,
+  chain: base,
   transport: http(RPC_URL),
 });
 
