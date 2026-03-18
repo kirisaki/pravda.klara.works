@@ -14,6 +14,7 @@ const { postSlug } = Astro.props;
     margin-top: 3rem;
     border-top: 1px solid var(--gray);
     padding-top: 1.5rem;
+    font-family: 'Josefin Sans', 'M PLUS 1p', sans-serif;
   }
   .comments h2 {
     font-size: 1.5rem;
@@ -132,5 +133,27 @@ const { postSlug } = Astro.props;
     color: var(--white);
     font-size: 0.85rem;
     text-indent: 0;
+  }
+  .social-info {
+    color: var(--gray);
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+  .btn-link {
+    background: none;
+    color: var(--gray);
+    padding: 0;
+    font-size: 0.85rem;
+  }
+  .btn-link:hover {
+    background: none;
+    color: var(--white);
+  }
+  .btn-secondary {
+    background: var(--gray);
+  }
+  .btn-secondary:hover {
+    background: var(--white);
+    color: var(--dark);
   }
 </style>
