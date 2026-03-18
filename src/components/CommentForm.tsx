@@ -1,4 +1,4 @@
-import { useState, useRef } from "preact/hooks";
+import { useState } from "preact/hooks";
 import { connectWallet, submitComment, type Comment } from "../lib/golos";
 import type { Hex } from "viem";
 
@@ -13,34 +13,30 @@ export default function CommentForm({ postSlug, onCommentPosted }: Props) {
   const [content, setContent] = useState("");
   const [status, setStatus] = useState("");
   const [submitting, setSubmitting] = useState(false);
-  const contentRef = useRef<HTMLTextAreaElement>(null);
-
-  async function handleConnect() {
-    try {
-      const addr = await connectWallet();
-      setAddress(addr);
-    } catch (e: any) {
-      alert(e.message);
-    }
-  }
 
   async function handleSubmit() {
-    if (!address) return;
     const u = username.trim();
     const c = content.trim();
     if (!u) { setStatus("Username is required"); return; }
     if (!c) { setStatus("Comment is required"); return; }
 
     setSubmitting(true);
-    setStatus("Signing…");
 
     try {
-      setStatus("Submitting…");
-      await submitComment(postSlug, address, u, c);
+      // Connect wallet if not yet connected
+      let addr = address;
+      if (!addr) {
+        setStatus("Connecting wallet…");
+        addr = await connectWallet();
+        setAddress(addr);
+      }
+
+      setStatus("Signing…");
+      await submitComment(postSlug, addr, u, c);
       localStorage.setItem("golos:username", u);
       setContent("");
       onCommentPosted({
-        author: address,
+        author: addr,
         username: u,
         ensName: "",
         content: c,
@@ -61,11 +57,7 @@ export default function CommentForm({ postSlug, onCommentPosted }: Props) {
     }
   }
 
-  if (!address) {
-    return <button onClick={handleConnect}>Connect Wallet</button>;
-  }
-
-  const shortAddr = address.slice(0, 6) + "…" + address.slice(-4);
+  const shortAddr = address ? address.slice(0, 6) + "…" + address.slice(-4) : null;
 
   return (
     <div class="form-fields">
@@ -77,10 +69,9 @@ export default function CommentForm({ postSlug, onCommentPosted }: Props) {
           value={username}
           onInput={(e) => setUsername((e.target as HTMLInputElement).value)}
         />
-        <span class="wallet-address">{shortAddr}</span>
+        {shortAddr && <span class="wallet-address">{shortAddr}</span>}
       </div>
       <textarea
-        ref={contentRef}
         placeholder="Write a comment…"
         maxLength={5120}
         rows={4}
