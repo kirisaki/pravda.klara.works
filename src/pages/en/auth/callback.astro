@@ -1,0 +1,36 @@
+---
+// This page handles the OAuth callback redirect.
+// The relayer redirects here with ?token=xxx after successful authentication.
+// Client-side script saves the token and redirects back.
+---
+
+<html>
+<head><title>Logging in…</title></head>
+<body>
+  <p>Logging in…</p>
+  <script is:inline>
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get("token");
+
+    if (token) {
+      // Decode JWT payload to get displayName and wallet
+      try {
+        const base64 = token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
+        const binary = atob(base64);
+        const bytes = Uint8Array.from(binary, c => c.charCodeAt(0));
+        const payload = JSON.parse(new TextDecoder().decode(bytes));
+        localStorage.setItem("golos:token", token);
+        localStorage.setItem("golos:displayName", payload.displayName ?? "");
+        localStorage.setItem("golos:wallet", payload.wallet ?? "");
+      } catch (e) {
+        console.error("Failed to parse token:", e);
+      }
+    }
+
+    // Redirect back to the referring page or home
+    const returnTo = localStorage.getItem("golos:returnTo") || "/";
+    localStorage.removeItem("golos:returnTo");
+    window.location.href = returnTo;
+  </script>
+</body>
+</html>
