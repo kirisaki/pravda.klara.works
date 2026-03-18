@@ -2,7 +2,7 @@ import { createPublicClient, http, keccak256, toHex, encodePacked, type Hex } fr
 import { base } from "viem/chains";
 
 const CONTRACT_ADDRESS = "0x4Dbfdd81D982c2F7b1fD844D49b93483b5c0900D" as Hex;
-const RPC_URL = "https://base-mainnet.g.alchemy.com/v2/1hfCF9ujrITFEuiu7gNaa";
+const RPC_URL = "https://mainnet.base.org";
 const RELAYER_URL =
   typeof window !== "undefined" && window.location.hostname === "localhost"
     ? "http://localhost:8787"
