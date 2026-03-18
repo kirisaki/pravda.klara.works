@@ -26,6 +26,10 @@ export default function Comments({ postSlug }: { postSlug: string }) {
       </div>
       <div class="comment-form">
         <CommentForm postSlug={postSlug} onCommentPosted={handleCommentPosted} />
+        <p class="comment-notice">
+          Comments are stored semi-permanently on the blockchain.<br />
+          コメントは半永久的にブロックチェーンへ保存されます。
+        </p>
       </div>
     </section>
   );
